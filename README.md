@@ -1,5 +1,7 @@
 📖 Overview
+
 This project demonstrates a practical Correlation Power Analysis (CPA) attack against a hardware implementation of AES-128 running on an STM32 Nucleo microcontroller. By modifying the board's power delivery network and capturing power consumption traces during encryption, we successfully recovered the full 128-bit secret key using statistical leakage models.
+
 Key Achievement: Recovered the full 128-bit AES key by analyzing power consumption fluctuations, exploiting the Hamming Weight leakage model.
 
 🔧 Hardware Modification & Setup
@@ -12,7 +14,9 @@ To perform the attack, the target STM32 Nucleo board was physically modified to 
 •	Trigger Mechanism: Implemented a GPIO trigger in the AES firmware to synchronize the oscilloscope capture exactly at the start of encryption.
 
 🔬 Attack Methodology
+
 The attack follows a standard CPA workflow:
+
 1.	Data Collection:
 
   	•	The PC sends random plaintexts to the STM32 via UART.
