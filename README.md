@@ -1,10 +1,6 @@
 # Side-Channel Analysis on AES-128
 
-## Banner
-
-![AES-128 CPA Project Banner](assets/banner.png)
-
-> Optional: place a custom banner image at `assets/banner.png` (for example: oscilloscope capture + correlation plot + recovered key highlight).
+![Project Banner](https://placehold.co/1200x320?text=Side+Channel+Analysis+on+AES-128)
 
 A practical **Correlation Power Analysis (CPA)** attack against a hardware AES-128 implementation running on an STM32 Nucleo microcontroller.  By capturing power consumption traces during encryption we recover the full 128-bit secret key using statistical leakage models.
 
