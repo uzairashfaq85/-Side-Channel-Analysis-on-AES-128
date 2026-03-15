@@ -1,5 +1,11 @@
 # Side-Channel Analysis on AES-128
 
+## Banner
+
+![AES-128 CPA Project Banner](assets/banner.png)
+
+> Optional: place a custom banner image at `assets/banner.png` (for example: oscilloscope capture + correlation plot + recovered key highlight).
+
 A practical **Correlation Power Analysis (CPA)** attack against a hardware AES-128 implementation running on an STM32 Nucleo microcontroller.  By capturing power consumption traces during encryption we recover the full 128-bit secret key using statistical leakage models.
 
 > **Key Achievement:** 100% key recovery rate — all 16 key bytes recovered from power traces using the Hamming Weight leakage model.
@@ -191,13 +197,13 @@ pip install scared numpy matplotlib
 
 ## Results
 
-| Metric | Value |
+| Metric | Portfolio-Ready Summary |
 |---|---|
-| Total key bytes recovered | 16 / 16 |
-| Success rate | 100% |
-| Best model | Hamming Weight |
-| Typical traces needed (HW) | ~1 000 – 2 000 |
-| Dataset size | 10 000 traces × 1 000 samples |
+| Key recovery completeness | **16 / 16 bytes recovered** |
+| End-to-end attack success | **100%** on the collected dataset |
+| Most effective leakage model | **Hamming Weight (HW)** |
+| Traces required for reliable HW recovery | **~1,000–2,000 traces** |
+| Total acquisition volume used | **10,000 traces × 1,000 samples** |
 
 The Hamming Weight model consistently requires the fewest traces.  Single-bit models require more traces but can succeed with sufficient data, with higher-order bits (closer to MSB) generally performing slightly better due to higher variance in leakage.
 
