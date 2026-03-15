@@ -16,10 +16,13 @@
 *.pdf
 *.webp
 
-# Specific generated artifacts
-Task1_Python_Code_Files/Tiny_AES_CPA_attack_full_key.png
-Task1_Python_Code_Files/Tiny_AES_CPA_attack_key_byte_*.png
-Task1_Python_Code_Files/CPA_attack_full_key.png
+# Specific generated artifacts (plots now in Task1_Python_Code_Files/plots/)
+Task1_Python_Code_Files/plots/Tiny_AES_CPA_attack_full_key.png
+Task1_Python_Code_Files/plots/Tiny_AES_CPA_attack_key_byte_*.png
+Task1_Python_Code_Files/plots/CPA_attack_full_key.png
+
+# Binary data files (now in Task1_Python_Code_Files/data/)
+Task1_Python_Code_Files/data/
 
 
 .venv/
