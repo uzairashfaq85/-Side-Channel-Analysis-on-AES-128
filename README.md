@@ -81,12 +81,20 @@ PC  --[UART]--> STM32 Nucleo
 
 ```
 .
-├── AES_CPA_Scared.ipynb              # End-to-end CPA attack using the Scared library
 ├── README.md
 ├── .gitignore
 ├── Task1_Python_Code_Files/
+│   ├── AES_CPA_Scared.ipynb          # End-to-end CPA attack using the Scared library
 │   ├── CPA_Attack_Simple.py          # Modular, fully vectorised CPA attack (main script)
-│   └── cpa_attack.py                 # Alternative implementation (struct-based loader)
+│   ├── cpa_attack.py                 # Alternative implementation (struct-based loader)
+│   ├── data/                         # [gitignored] Binary input datasets
+│   │   ├── datapoints.bin            # Raw power traces (10 000 × 1 000 samples)
+│   │   ├── plaintexts_SCA.bin        # Corresponding 128-bit plaintexts
+│   │   ├── HW.bin                    # Hamming Weight lookup table
+│   │   └── SubBytes.bin             # AES SubBytes lookup table
+│   └── plots/                        # [gitignored] Generated correlation plots
+│       ├── CPA_attack_full_key.png
+│       └── Tiny_AES_CPA_attack_full_key.png
 └── Task2_MATLAB_Code_Files/
     ├── lab_task2_123.m               # CPA attack + 9-model comparison in MATLAB
     ├── attack_data_10k.mat           # [gitignored] 10 000 captured power traces
@@ -126,9 +134,9 @@ An equivalent implementation using `struct.unpack` for trace loading.  The core 
 
 ```bash
 cd Task1_Python_Code_Files
-# Place plaintexts_SCA.bin, datapoints.bin, SubBytes.bin, HW.bin here
+# Place plaintexts_SCA.bin, datapoints.bin, SubBytes.bin, HW.bin inside data/
 python CPA_Attack_Simple.py
-# Output: CPA_attack_full_key.png + recovered key printed to console
+# Output: plots/CPA_attack_full_key.png + recovered key printed to console
 ```
 
 ---
@@ -162,7 +170,7 @@ lab_task2_123
 
 ## Jupyter Notebook (Scared)
 
-`AES_CPA_Scared.ipynb` demonstrates the same attack using the **[Scared](https://gitlab.com/eshard/scared)** SCA framework:
+`Task1_Python_Code_Files/AES_CPA_Scared.ipynb` demonstrates the same attack using the **[Scared](https://gitlab.com/eshard/scared)** SCA framework:
 
 | Step | Description |
 |---|---|
@@ -225,7 +233,7 @@ cd Task1_Python_Code_Files
 python CPA_Attack_Simple.py
 
 # Run Notebook
-cd ..
+cd Task1_Python_Code_Files
 jupyter notebook AES_CPA_Scared.ipynb
 ```
 
