@@ -1,3 +1,27 @@
+# =============================================================================
+# File    : CPA_Attack_Simple.py
+# Project : Side-Channel Analysis on AES-128
+# Author  : Uzair Ashfaq
+# Created : November 2025
+# Purpose : Clean, modular Correlation Power Analysis (CPA) attack on AES-128.
+#           Loads 10 000 power traces captured from an STM32 Nucleo board and
+#           recovers all 16 bytes of the AES secret key by correlating the
+#           Hamming-weight of the first-round SubBytes output against the
+#           measured power traces.  Trace data is stored column-wise in the
+#           binary file and is transposed on load (matches the oscilloscope
+#           capture format used in this lab).
+#
+# Steps:
+#   1. Load plaintexts  -> (num_traces, 16) array
+#   2. Load power traces -> (num_traces, num_samples) array  [transposed]
+#   3. Load AES S-Box and Hamming-weight lookup tables
+#   4. Recover all 16 key bytes via vectorised Pearson correlation
+#   5. Plot a 4x4 grid of per-byte correlation profiles and save to PNG
+#
+# Usage:
+#   python CPA_Attack_Simple.py
+#   (adjust NUM_TRACES / NUM_SAMPLES / file paths in main() if needed)
+# =============================================================================
 """
 cleaned_cpa_attack_transposed.py
 ================================
@@ -41,6 +65,7 @@ match your dataset dimensions and file names.
 
 from __future__ import annotations
 
+import os
 import numpy as np
 from pathlib import Path
 from datetime import datetime
@@ -177,7 +202,8 @@ def cpa_recover_key_byte(
     """
     # Extract plaintext byte vector.
     p = plaintexts[:, byte_index]
-    num_traces, num_samples = traces.shape
+    num_traces = traces.shape[0]  # used for shape validation below
+    num_samples = traces.shape[1]  # used for shape validation below
     # Hypotheses for this key byte.
     key_guesses = np.arange(256, dtype=np.uint8)
     # Compute SBOX(P ⊕ K) for each guess.
@@ -294,6 +320,9 @@ def main() -> None:
     mirroring the original output and generates a correlation plot
     summarising the attack results.
     """
+    # Change to the script's own directory so relative file paths always work.
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
     # Configuration: adjust to your dataset
     NUM_TRACES = 10000
     NUM_SAMPLES = 1000
