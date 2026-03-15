@@ -2,18 +2,34 @@
 *.bin
 *.mat
 
+# Archives / packaged outputs
+*.zip
+*.7z
+*.tar
+*.gz
+
 
 *.png
 *.jpg
 *.jpeg
 *.svg
 *.pdf
+*.webp
+
+# Specific generated artifacts
+Task1_Python_Code_Files/Tiny_AES_CPA_attack_full_key.png
+Task1_Python_Code_Files/Tiny_AES_CPA_attack_key_byte_*.png
+Task1_Python_Code_Files/CPA_attack_full_key.png
 
 
 .venv/
 venv/
 env/
 ENV/
+
+# Local env files
+.env
+.env.*
 
 
 __pycache__/
@@ -24,6 +40,12 @@ __pycache__/
 dist/
 build/
 .eggs/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
 
 
 .ipynb_checkpoints/
@@ -34,11 +56,16 @@ build/
 .idea/
 *.sublime-project
 *.sublime-workspace
+*.code-workspace
 
 
 .DS_Store
 Thumbs.db
 desktop.ini
+~$*
+*.swp
+*.swo
+*.orig
 
 *.asv
 *.m~
@@ -49,3 +76,4 @@ octave-workspace
 *.log
 *.tmp
 *.bak
+*.cache
